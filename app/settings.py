@@ -90,10 +90,25 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+postgres_port=config("postgres_port")
+postgres_password=config("postgres_password")
+postgres_name=config("postgres_name")
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': postgres_name,
+        'USER': 'postgres',
+        'PASSWORD':postgres_password,
+        'HOST': config('DB_HOST'),
+        'PORT': postgres_port,
     }
 }
 
@@ -188,14 +203,14 @@ CORS_ALLOWED_ORIGINS = [
 GOOGLE_CLIENT_ID=config("GOOGLE_CLIENT_ID")
 
 
-# REDIS_URL =config("REDIS_URL")
+REDIS_URL =config("REDIS_URL")
 
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": REDIS_URL,
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     }
-# }
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_URL,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}

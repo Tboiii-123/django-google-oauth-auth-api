@@ -1,7 +1,3 @@
-Nice — adding rate limiting is a solid touch for auth endpoints 🔥
-
-Since this is something you’ll likely want to reuse on GitHub, here’s a clean README structure you can copy and paste directly.
-
 ````md
 # Django Google OAuth Authentication API
 
@@ -33,9 +29,41 @@ This project provides a secure backend authentication service using Google Sign-
 - Simple JWT
 - Google OAuth2
 - Django Rate Limit
-- SQLite (can be switched to PostgreSQL/MySQL)
+- PostgreSQL
+- Docker
+- Docker Compose
 
 ---
+
+## Docker Support
+
+This project is fully containerized using Docker and Docker Compose.
+
+It includes:
+
+- Django application container
+- PostgreSQL database container
+- Environment-based configuration
+- Volume persistence for database data
+
+
+## Running with Docker
+
+### 1. Build and start containers
+
+```bash
+docker compose up --build
+2. Run migrations
+docker compose exec web python manage.py migrate
+3. Create superuser (optional)
+docker compose exec web python manage.py createsuperuser
+4. Access application
+http://localhost:8000
+
+```
+
+
+
 
 ## Project Structure
 
@@ -168,7 +196,10 @@ Create a `.env` file:
 ```env
 GOOGLE_CLIENT_ID=your_google_client_id
 REDIS_URL=your_redis_url
-DEBUG=True
+postgres_name=your_db_name
+postgres_password=your_password
+postgres_port=5432
+DB_HOST=db
 ```
 
 ---
@@ -256,9 +287,7 @@ Authenticated users receive:
 
 * Store Google `sub` as unique identity
 * HTTP-only cookie authentication
-* Token refresh rotation
 * Multi-provider OAuth (GitHub, Facebook)
-* User profile endpoint
 * Role-based permissions
 
 ---
@@ -268,24 +297,3 @@ Authenticated users receive:
 Built by Hussein Lawal.
 
 ````
-
-Before pushing:
-
-1. Add a good repo name like:
-
-```text
-django-google-oauth-auth-api
-````
-
-2. Add screenshots or Postman examples later.
-
-3. Make sure `.env` is in `.gitignore`:
-
-```gitignore
-.env
-venv/
-__pycache__/
-db.sqlite3
-```
-
-This README will already look professional for GitHub and portfolio.
