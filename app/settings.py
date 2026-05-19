@@ -97,18 +97,20 @@ WSGI_APPLICATION = 'app.wsgi.application'
 #     }
 # }
 
-postgres_port=config("postgres_port")
-postgres_password=config("postgres_password")
-postgres_name=config("postgres_name")
+POSTGRES_PORT=config("POSTGRES_PORT")
+POSTGRES_PASSWORD=config("POSTGRES_PASSWORD")
+POSTGRES_NAME=config("POSTGRES_NAME")
+POSTGRES_USER=config("POSTGRES_USER")
+
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': postgres_name,
-        'USER': 'postgres',
-        'PASSWORD':postgres_password,
-        'HOST': config('DB_HOST'),
-        'PORT': postgres_port,
+        'NAME': POSTGRES_NAME,
+        'USER': POSTGRES_USER,
+        'PASSWORD':POSTGRES_PASSWORD,
+        'HOST': config('POSTGRES_HOST'),
+        'PORT': POSTGRES_PORT,
     }
 }
 
