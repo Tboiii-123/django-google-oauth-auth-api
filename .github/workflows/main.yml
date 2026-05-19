@@ -2,7 +2,7 @@ name: Build Pipeline
 
 on:
   push:
-    branches: [Main]
+    branches: [Main, dev]
   pull_request:
     branches: [Main]
 
