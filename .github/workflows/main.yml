@@ -39,24 +39,25 @@ jobs:
 
       - name: Run migrations
         env:
-          POSTGRES_NAME: test_db
+          POSTGRES_DB: test_db
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_HOST: postgres
+          POSTGRES_HOST: 127.0.0.1
           POSTGRES_PORT: 5432
+
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
-          
         run: python manage.py migrate
 
       - name: Run tests
         env:
-          POSTGRES_NAME: test_db
+          POSTGRES_DB: test_db
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_HOST: postgres
+          POSTGRES_HOST: 127.0.0.1
           POSTGRES_PORT: 5432
+
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
