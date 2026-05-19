@@ -46,6 +46,8 @@ jobs:
           POSTGRES_PORT: 5432
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
+          
         run: python manage.py migrate
 
       - name: Run tests
@@ -57,4 +59,5 @@ jobs:
           POSTGRES_PORT: 5432
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
         run: python manage.py test
